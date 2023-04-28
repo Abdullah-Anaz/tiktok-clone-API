@@ -4,7 +4,11 @@ const port = 4000;
 const { videos } = require("./videos");
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const allowedOrigins = ['https://tiktok-clone-ca5ae.web.app', 'https://tiktok-clone-ca5ae.firebaseapp.com'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   next();
 });
 
